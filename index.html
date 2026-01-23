@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hide waldo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            background-image: url('hw_cover.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            padding: 40px 20px;
+            color: #4a4a4a;
+            font-size: 13px;
+            line-height: 1.4;
+            position: relative;
+            -webkit-font-smoothing: none;
+            -moz-osx-font-smoothing: grayscale;
+            font-smooth: never;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(212, 180, 192, 0.65);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .links-container {
+            background-color: #ffffff;
+            border: 1px solid #4a4a4a;
+            width: 400px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .links-header {
+            background-color: #d4d0c8;
+            padding: 4px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #4a4a4a;
+        }
+
+        .window-title {
+            font-size: 11px;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        .minimize {
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+            padding: 0 6px;
+            font-weight: bold;
+        }
+
+        .minimize:hover {
+            background-color: #b0b0b0;
+        }
+
+        .minimize::before {
+            content: '\2212';
+        }
+
+        .links-container.minimized .minimize {
+            display: none;
+        }
+
+        .links-container.minimized .links-header:hover {
+            background-color: #b8b4ac;
+        }
+
+        .links-container.minimized {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            z-index: 1;
+        }
+
+        .links-container.minimized .links-table {
+            display: none;
+        }
+
+        .links-container.minimized .links-table {
+            display: none;
+        }
+
+        .links-container.minimized .links-header {
+            cursor: pointer;
+        }
+
+        .links-table {
+            margin: 0;
+            width: 100%;
+            border-collapse: collapse;
+            border: none;
+            padding: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        .links-container.minimized .links-table {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .links-table td {
+            padding: 10px 15px;
+        }
+
+        .links-table td:first-child,
+        .links-table td:last-child {
+            opacity: 0.5;
+            width: 30px;
+        }
+
+        a {
+            color: #0000EE;
+            text-decoration: none;
+            display: inline-block;
+            transition: filter 0.3s ease;
+        }
+
+        a:hover {
+            filter: blur(2px);
+        }
+
+        .hidden-text {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 9px;
+            opacity: 0.3;
+            letter-spacing: 2px;
+            pointer-events: none;
+        }
+
+        .hidden-gif {
+            position: fixed;
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            opacity: 0;
+            pointer-events: none;
+            width: 60px;
+            height: 60px;
+        }
+
+        .hidden-gif.show {
+            opacity: 0.6;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            border: 1px solid #4a4a4a;
+            width: 400px;
+            max-width: 90%;
+        }
+
+        .modal-header {
+            background-color: #d4d0c8;
+            padding: 4px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #4a4a4a;
+        }
+
+        .modal-title {
+            font-size: 11px;
+            
+        }
+
+        .close {
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+            padding: 0 6px;
+            font-weight: bold;
+        }
+
+        .close:hover {
+            background-color: #b0b0b0;
+        }
+
+        .modal-body {
+            padding: 20px;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .modal-body p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="links-container" id="linksWindow">
+            <div class="links-header" onclick="restoreWindow()">
+                <span class="window-title">hide waldo 2026</span>
+                <span class="minimize" onclick="minimizeWindow(event)"></span>
+            </div>
+            <table class="links-table">
+                <tr>
+                    <td>~</td>
+                    <td><a href="https://open.spotify.com" target="_blank">( spotify )</a></td>
+                    <td>~</td>
+                </tr>
+                <tr>
+                    <td>~</td>
+                    <td><a href="https://instagram.com" target="_blank">( instagram )</a></td>
+                    <td>~</td>
+                </tr>
+                <tr>
+                    <td>~</td>
+                    <td><a href="https://tiktok.com" target="_blank">( tiktok )</a></td>
+                    <td>~</td>
+                </tr>
+                <tr>
+                    <td>~</td>
+                    <td><a href="#" onclick="openAbout(); return false;">( about )</a></td>
+                    <td>~</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    
+    <div class="hidden-text">elsewhere</div>
+    
+    <img src="HANDS2.gif" alt="" class="hidden-gif" id="hiddenGif">
+    
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">about</span>
+                <span class="close" onclick="closeAbout()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>hide waldo is an artist.</p>
+                <p>exploring sound and space.</p>
+		<p>exploring sound and space.</p>
+		<p>exploring sound and space.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openAbout() {
+            document.getElementById('aboutModal').style.display = 'flex';
+        }
+        
+        function closeAbout() {
+            document.getElementById('aboutModal').style.display = 'none';
+        }
+
+        function minimizeWindow(event) {
+            event.stopPropagation();
+            document.getElementById('linksWindow').classList.add('minimized');
+            document.getElementById('hiddenGif').classList.add('show');
+        }
+
+        function restoreWindow() {
+            document.getElementById('linksWindow').classList.remove('minimized');
+            document.getElementById('hiddenGif').classList.remove('show');
+        }
+    </script>
+</body>
+</html>
