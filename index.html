@@ -205,6 +205,7 @@
         font-size: 12px;
         opacity: 0.45;
         letter-spacing: 2px;
+        cursor: pointer;
       }
 
       .hidden-gif {
@@ -220,6 +221,8 @@
 
       .hidden-gif.show {
         opacity: 0.6;
+        pointer-events: auto;
+        cursor: pointer;
       }
 
       .modal {
@@ -232,6 +235,7 @@
         height: 100%;
         justify-content: center;
         align-items: center;
+        background-color: transparent;
       }
 
       .modal-content {
@@ -274,6 +278,16 @@
 
       .modal-body p {
         margin-bottom: 10px;
+      }
+
+      .copy-btn {
+        cursor: pointer;
+        opacity: 0.6;
+        font-size: 10px;
+      }
+
+      .copy-btn:hover {
+        opacity: 1;
       }
     </style>
   </head>
@@ -334,9 +348,15 @@
       </div>
     </div>
 
-    <div class="hidden-text">elsewhere</div>
+    <div class="hidden-text" onclick="openElsewhere()">elsewhere</div>
 
-    <img src="media/HANDS2.GIF" alt="" class="hidden-gif" id="hiddenGif" />
+    <img
+      src="media/HANDS2.GIF"
+      alt=""
+      class="hidden-gif"
+      id="hiddenGif"
+      onclick="openHands()"
+    />
 
     <!-- About Modal -->
     <div id="aboutModal" class="modal">
@@ -347,18 +367,67 @@
         </div>
         <div class="modal-body">
           <p>hide waldo is a swedish multi genre artist</p>
-          <p>for business inquiries, contact at contact@hidewaldo.com</p>
+          <p>
+            for business inquiries, contact at contact@hidewaldo.com
+            <span class="copy-btn" onclick="copyEmail()">[copy]</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Elsewhere Modal -->
+    <div id="elsewhereModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-title">elsewhere</span>
+          <span class="close" onclick="closeElsewhere()">&times;</span>
+        </div>
+        <div class="modal-body">
+          <img src="media/hwelsewhere.jpg" alt="" style="max-width: 100%" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Hands Modal -->
+    <div id="handsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-title">it's ok to disassociate</span>
+          <span class="close" onclick="closeHands()">&times;</span>
+        </div>
+        <div class="modal-body">
+          <img src="media/hand.jpg" alt="" style="max-width: 100%" />
         </div>
       </div>
     </div>
 
     <script>
+      function copyEmail() {
+        navigator.clipboard.writeText("contact@hidewaldo.com");
+      }
+
       function openAbout() {
         document.getElementById("aboutModal").style.display = "flex";
       }
 
       function closeAbout() {
         document.getElementById("aboutModal").style.display = "none";
+      }
+
+      function openElsewhere() {
+        document.getElementById("elsewhereModal").style.display = "flex";
+      }
+
+      function closeElsewhere() {
+        document.getElementById("elsewhereModal").style.display = "none";
+      }
+
+      function openHands() {
+        document.getElementById("handsModal").style.display = "flex";
+      }
+
+      function closeHands() {
+        document.getElementById("handsModal").style.display = "none";
       }
 
       function minimizeWindow(event) {
