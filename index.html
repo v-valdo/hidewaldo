@@ -279,16 +279,6 @@
       .modal-body p {
         margin-bottom: 10px;
       }
-
-      .copy-btn {
-        cursor: pointer;
-        opacity: 0.6;
-        font-size: 10px;
-      }
-
-      .copy-btn:hover {
-        opacity: 1;
-      }
     </style>
   </head>
   <body>
@@ -367,10 +357,7 @@
         </div>
         <div class="modal-body">
           <p>hide waldo is a swedish multi genre artist</p>
-          <p>
-            for business inquiries, contact at contact@hidewaldo.com
-            <span class="copy-btn" onclick="copyEmail()">[copy]</span>
-          </p>
+          <p>business inquiries — contact@hidewaldo.com</p>
         </div>
       </div>
     </div>
@@ -402,10 +389,6 @@
     </div>
 
     <script>
-      function copyEmail() {
-        navigator.clipboard.writeText("contact@hidewaldo.com");
-      }
-
       function openAbout() {
         document.getElementById("aboutModal").style.display = "flex";
       }
