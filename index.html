@@ -45,6 +45,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        zoom: 1.1;
       }
 
       .bg-image {
@@ -304,41 +305,6 @@
         </div>
         <table class="links-table">
           <tr>
-            <td colspan="3">
-              <hr
-                style="
-                  border: none;
-                  border-top: 1px solid #4a4a4a;
-                  opacity: 0.3;
-                  margin: 0;
-                "
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>~</td>
-            <td>
-              <a
-                href="https://open.spotify.com/album/3zC60GzBj1vMUki9shoyNJ?si=eOcUjZvnT2aSNKYpOhSFYw"
-                target="_blank"
-                >( ♫ "before forever" out now! )</a
-              >
-            </td>
-            <td>~</td>
-          </tr>
-          <tr>
-            <td colspan="3">
-              <hr
-                style="
-                  border: none;
-                  border-top: 1px solid #4a4a4a;
-                  opacity: 0.3;
-                  margin: 0;
-                "
-              />
-            </td>
-          </tr>
-          <tr>
             <td>~</td>
             <td>
               <a
@@ -372,6 +338,20 @@
             </td>
             <td>~</td>
           </tr>
+          <tr>
+            <td>~</td>
+            <td>
+              <a
+                href="#"
+                onclick="
+                  openMilestones();
+                  return false;
+                "
+                >( ☆ milestones )</a
+              >
+            </td>
+            <td>~</td>
+          </tr>
         </table>
       </div>
     </div>
@@ -396,6 +376,30 @@
         <div class="modal-body">
           <p>hide waldo is a swedish multi genre artist</p>
           <p>business inquiries — contact@hidewaldo.com</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Milestones Modal -->
+    <div id="milestonesModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-title">milestones</span>
+          <span class="close" onclick="closeMilestones()">&times;</span>
+        </div>
+        <div class="modal-body">
+          <p>
+            <span style="font-size: 10px; opacity: 0.6">february 2026</span> ⟡
+            <i>200k total streams</i>
+          </p>
+          <p>
+            <span style="font-size: 10px; opacity: 0.6">january 2026</span> ⟡
+            <i>100k total streams</i>
+          </p>
+          <p>
+            <span style="font-size: 10px; opacity: 0.6">october 2025</span> ⟡
+            <i>hide waldo begins</i>
+          </p>
         </div>
       </div>
     </div>
@@ -433,6 +437,14 @@
 
       function closeAbout() {
         document.getElementById("aboutModal").style.display = "none";
+      }
+
+      function openMilestones() {
+        document.getElementById("milestonesModal").style.display = "flex";
+      }
+
+      function closeMilestones() {
+        document.getElementById("milestonesModal").style.display = "none";
       }
 
       function openElsewhere() {
