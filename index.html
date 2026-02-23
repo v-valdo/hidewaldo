@@ -45,7 +45,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        zoom: 1.1;
       }
 
       .bg-image {
@@ -431,28 +430,36 @@
     </div>
 
     <script>
+      const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
       function openAbout() {
         document.getElementById("aboutModal").style.display = "flex";
+        themeColorMeta.setAttribute("content", "#e0c4ce");
       }
 
       function closeAbout() {
         document.getElementById("aboutModal").style.display = "none";
+        themeColorMeta.setAttribute("content", "#e0c4ce");
       }
 
       function openMilestones() {
         document.getElementById("milestonesModal").style.display = "flex";
+        themeColorMeta.setAttribute("content", "#e0c4ce");
       }
 
       function closeMilestones() {
         document.getElementById("milestonesModal").style.display = "none";
+        themeColorMeta.setAttribute("content", "#e0c4ce");
       }
 
       function openElsewhere() {
         document.getElementById("elsewhereModal").style.display = "flex";
+        themeColorMeta.setAttribute("content", "#e0c4ce");
       }
 
       function closeElsewhere() {
         document.getElementById("elsewhereModal").style.display = "none";
+        themeColorMeta.setAttribute("content", "#e0c4ce");
       }
 
       function openHands() {
